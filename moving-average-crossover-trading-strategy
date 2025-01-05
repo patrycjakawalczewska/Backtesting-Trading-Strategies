@@ -1,11 +1,15 @@
-# 1. Set up the environment by installing necessary libraries:
+# 1. Set up the environment by installing necessary libraries for this project:
 
 pip install yfinance
+pip install matplotlib
+pip install numpy
+pip install pandas
 
 # 2. Import sample stock data from yahoo finance
 
 import yfinance as yf
-data = yf.download("AMZN", start = "2023-01-01", end = "2023-12-01")
+data = yf.download("AMZN", start = "2024-01-01", end = "2024-12-01")
 # use head() command to display the first 5 rows to preview data:
 print(data.head())
 
+# 3. 
