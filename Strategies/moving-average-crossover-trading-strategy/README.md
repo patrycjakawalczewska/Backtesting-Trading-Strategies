@@ -9,4 +9,4 @@ Weighted Moving Average (WMA) = This type of moving average also gives greater w
 Moving Average Crossover = a popular trading strategy that uses two or more moving averages to identify potential buy and sell signals. The basic idea behind this strategy is to compare two moving averages of different lengths and look for a crossover where one moving average crosses above or below the the other. The two moving averages can be the same type, but traders can also choose two different types to look for a crossover.
 ## Buy vs Sell Signals:
 
-A buy signal is triggered when the faster average crosses above the slower average, while a sell signal is triggered when the faster average crosses below the slower one.
+A buy signal (+1) is triggered when the faster average (e.g. SMA10) crosses above the slower average (e.g. SMA50), while a sell signal (-1) is triggered when the faster average (e.g. SMA10) crosses below the slower one (e.g. SMA50).
