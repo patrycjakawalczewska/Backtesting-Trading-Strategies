@@ -12,4 +12,28 @@ data = yf.download("AMZN", start = "2024-01-01", end = "2024-12-01")
 # use head() command to display the first 5 rows to preview data:
 print(data.head())
 
-# 3. 
+# 3. Implement the moving average crossover trading strategy:
+
+import pandas as pd
+import matplotlib as plt
+import matplotlib.pyplot as plt
+
+#Calculate simple moving averages, SMA10 and SMA50:
+data['SMA10'] = data['Close'].rolling(window=10).mean()
+data['SMA50'] = data['Close'].rolling(window=50).mean()
+
+#create a new column 'Signal' and assign 0 to all rows:
+data['Signal'] = 0
+
+#Generate buy/sell signals:
+data.loc[data['SMA10'] > data['SMA50'], 'Signal'] = 1 # where 1 indicates bullish signal (buy)
+data.loc[data['SMA10'] <= data['SMA50'], 'Signal'] = -1 # where -1 indicates bearish signal (sell)
+
+#Plot the results:
+plt.figure(figsize=(14, 7))
+plt.plot(data['Close'], label='Close Price', alpha=0.5) #alpha controls the transparency of plot elements in matplotlib
+plt.plot(data['SMA10'], label='10-Day SMA', alpha=0.75)
+plt.plot(data['SMA50'], label='50-Day SMA', alpha=0.75)
+plt.title('Moving Average Crossover Strategy')
+plt.legend()
+plt.show()
