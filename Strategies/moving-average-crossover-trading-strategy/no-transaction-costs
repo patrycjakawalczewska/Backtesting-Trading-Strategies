@@ -37,3 +37,13 @@ plt.plot(data['SMA50'], label='50-Day SMA', alpha=0.75)
 plt.title('Moving Average Crossover Strategy')
 plt.legend()
 plt.show()
+
+#Count buy and sell signals:
+buy_signals = data[data['Signal'] == 1].shape[0]
+sell_signals = data[data['Signal'] == -1].shape[0]
+
+print(f'Number of Buy Signals: {buy_signals}')
+print(f'Number of Sell Signals: {sell_signals}')
+
+# 4. Evaluate the strategy by:
+# a) comparing it to another strategy (buy-and-hold):
