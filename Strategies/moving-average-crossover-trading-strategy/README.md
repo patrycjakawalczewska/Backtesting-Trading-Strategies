@@ -10,3 +10,7 @@ Moving Average Crossover = a popular trading strategy that uses two or more movi
 ## Buy vs Sell Signals:
 
 A buy signal (+1) is triggered when the faster average (e.g. SMA10) crosses above the slower average (e.g. SMA50), while a sell signal (-1) is triggered when the faster average (e.g. SMA10) crosses below the slower one (e.g. SMA50).
+
+## Sharpe ratio:
+
+Sharpe ratio = a measure of risk-adjusted return. It describes how much excess return you receive for the volatility of holding a riskier asset. In general higher Sharpe ratio signifes better risk-adjusted returns.
