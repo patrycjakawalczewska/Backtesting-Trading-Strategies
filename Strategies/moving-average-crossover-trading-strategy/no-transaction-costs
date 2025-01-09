@@ -47,3 +47,47 @@ print(f'Number of Sell Signals: {sell_signals}')
 
 # 4. Evaluate the strategy by:
 # a) comparing it to another strategy (buy-and-hold):
+
+# Calculate daily returns
+data['Daily Return'] = data['Close'].pct_change()
+
+# Calculate strategy returns
+data['Strategy Return'] = data['Signal'].shift(1) * data['Daily Return']  # Shift signal to simulate "next day" action
+
+# Calculate cumulative returns
+data['Cumulative Buy-and-Hold'] = (1 + data['Daily Return']).cumprod()
+data['Cumulative Strategy'] = (1 + data['Strategy Return']).cumprod()
+
+# Plot the cumulative returns
+plt.figure(figsize=(14, 7))
+plt.plot(data['Cumulative Buy-and-Hold'], label='Buy-and-Hold', alpha=0.75)
+plt.plot(data['Cumulative Strategy'], label='Strategy', alpha=0.75)
+plt.title('Cumulative Returns: Strategy vs Buy-and-Hold')
+plt.legend()
+plt.show()
+
+# Print final returns
+buy_and_hold_return = data['Cumulative Buy-and-Hold'].iloc[-1] - 1
+strategy_return = data['Cumulative Strategy'].iloc[-1] - 1
+
+print(f"Buy-and-Hold Return: {buy_and_hold_return:.2%}")
+print(f"Strategy Return: {strategy_return:.2%}")
+
+# Calculate Sharpe ratios for each strategy:
+
+# Calculate average return and standard deviation for each strategy
+average_daily_return_buy_and_hold = data['Daily Return'].mean()
+average_daily_return_strategy = data['Strategy Return'].mean()
+
+std_dev_buy_and_hold = data['Daily Return'].std()
+std_dev_strategy = data['Strategy Return'].std()
+
+# Assume a risk-free rate of 0 for simplicity
+risk_free_rate = 0
+
+# Calculate Sharpe Ratios
+sharpe_ratio_buy_and_hold = (average_daily_return_buy_and_hold - risk_free_rate) / std_dev_buy_and_hold
+sharpe_ratio_strategy = (average_daily_return_strategy - risk_free_rate) / std_dev_strategy
+
+print(f"Sharpe Ratio (Buy-and-Hold): {sharpe_ratio_buy_and_hold:.2f}")
+print(f"Sharpe Ratio (Strategy): {sharpe_ratio_strategy:.2f}") # the higher sharpe ratio, the better
